@@ -63,11 +63,25 @@ developing your own process.
 - Add a new toy when the toy form is submitted
 
   - How I debugged:
+  (We got a 500 Internal Server Error when we submitted the form. We need to find server code issue)
+  (Looks like we have a typo, so we changed Toys to Toy)
+
+
 
 - Update the number of likes for a toy
 
   - How I debugged:
+(We got End of JSON input error which led us to inspect ToyCard.js file. It was expecting a response from the backend and converted that response to a json object.)
+(However, we weren't sending anything back as response from the server.)
+(We fixed that by sending a response back and that fixed our error)
+
+Side Notes:
+-Rails server shows app/conrtollers/toys_controller.rb:15:in 'update' unpermitted parameter: id
+- However the app works fine.
 
 - Donate a toy to Goodwill (and delete it from our database)
 
   - How I debugged:
+(After pressing the button to donate, we are getting the 404 error)
+(rails logs showed: ActionController::RoutingError no route matches [delete] "/toys/12")
+(Added the destroy route and it worked)
